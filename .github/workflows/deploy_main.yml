@@ -1,0 +1,20 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Build and push Docker image
+      env:
+        REGISTRY: 5.35.12.98:5000
+        IMAGE_NAME: my-zalypa
+        TAG: ${{ github.sha }}
+      run: |
+        docker build -t $REGISTRY/$IMAGE_NAME:$TAG .
+        docker push $REGISTRY/$IMAGE_NAME:$TAG
