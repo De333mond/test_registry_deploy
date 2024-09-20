@@ -12,7 +12,7 @@ jobs:
 
     - name: Build and push Docker image
       env:
-        REGISTRY: 5.35.12.98:5000
+        REGISTRY: dezzzmond.space:5000
         IMAGE_NAME: my-zalypa
         TAG: ${{ github.sha }}
       run: |
